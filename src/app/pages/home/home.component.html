@@ -1,0 +1,38 @@
+<h2>Virtual scroll</h2>
+<hr>
+<div class="row">
+  <div class="col-md-4 col-12">
+    <button type="button" class="btn btn-primary"
+            (click)="navigate( dataArr.length )">
+      Navigate to end
+    </button>
+  </div>
+  <div class="col-md-4 col-12">
+    <button type="button" class="btn btn-primary"
+            (click)="navigate( dataArr.length / 2 )">
+      Navigate to end middle
+    </button>
+  </div>
+  <div class="col-md-4 col-12 text-left">
+    <button type="button" class="btn btn-primary"
+            (click)="navigate( 0 )"> Navigate to start</button>
+  </div>
+</div>
+<hr>
+<cdk-virtual-scroll-viewport itemSize="50" class="list-container list-group">
+  <div  class="list-group-item animate__animated animate__fadeIn"
+        *cdkVirtualFor="let data of dataArr; let i = index; let c = count">
+    Item {{i}} / {{c}}
+  </div>
+</cdk-virtual-scroll-viewport>
+
+
+<h2 class="mt-3">Drag and Drop</h2>
+<hr>
+<ul class="list-group" cdkDropList (cdkDropListDropped)="drop( $event )">
+  <li class="list-group-item"
+      *ngFor="let country of countries"
+      cdkDrag>
+    {{country.name.official}}
+  </li>
+</ul>
